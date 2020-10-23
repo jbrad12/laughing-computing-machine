@@ -1,0 +1,18 @@
+.timer {
+    text-align: right;
+}
+
+.startpage {
+    text-align: center;
+}
+
+.answers-main {
+    text-align: center;
+}
+
+
+.startbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
