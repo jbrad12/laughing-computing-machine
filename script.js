@@ -7,8 +7,7 @@ var answer2 = document.querySelector(".answer2")
 var answer3 = document.querySelector(".answer3")
 var answer4 = document.querySelector(".answer4")
 var answerMain = document.querySelector(".answers-main")
-
-
+var result = document.querySelector(".result")
 
 var questions = [
   { q: "What tag is used to define a list item (in a bulleted list)?", answers: [
@@ -37,32 +36,15 @@ var questions = [
   ]},
 ]
 
+answerMain.style.visibility = "hidden"
 start.addEventListener("click", function(){
     startQuiz()
     questionOne()
+    answerMain.style.visibility = "visible"
 })
 
 
-answerMain.addEventListener("click", function(event) {
-  event.preventDefault();
-  if(event.target.matches("h3")) {
-    questionTwo()
 
-    answerMain.addEventListener("click", function(event) {
-      event.preventDefault();
-      if(event.target.matches("h3")) {
-        questionThree()
-
-        answerMain.addEventListener("click", function(event) {
-          event.preventDefault();
-          if(event.target.matches("h3")) {
-            questionFour()
-        }
-        })
-      }
-    })
-  }
-})
 
 //Functions
 function questionOne() {
@@ -73,6 +55,21 @@ function questionOne() {
     answer3.textContent = questions[0].answers[2].choice
     answer4.textContent = questions[0].answers[3].choice
 
+
+answerMain.addEventListener("click", function(event) {
+  
+  if(event.target.matches("h3") && event.target.getAttribute("class") === "answer1") {
+    questionTwo()
+    result.textContent = "Question One Correct!"
+    setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+  } else { 
+    result.textContent = "Question one Incorrect"
+    setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+    questionTwo()
+  }
+})
+    
+
 }
 
 function questionTwo() {
@@ -82,14 +79,43 @@ function questionTwo() {
   answer3.textContent = questions[1].answers[2].choice
   answer4.textContent = questions[1].answers[3].choice
 
-}
+  answerMain.addEventListener("click", function(event) {
+    
+    if(event.target.matches("h3") && event.target.getAttribute("class") === "answer3") {
+      questionThree()
+      result.textContent = "Question Two Correct!"
+      result.style.visibility = "visible";
+      setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+    } else {
+      result.textContent = "Question Two Incorrect"
+      result.style.visibility = "visible";
+      questionThree()
+      setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+    }
 
+})
+}
 function questionThree() {
   main.textContent = questions[2].q
   answer1.textContent = questions[2].answers[0].choice
   answer2.textContent = questions[2].answers[1].choice
   answer3.textContent = questions[2].answers[2].choice
   answer4.textContent = questions[2].answers[3].choice
+
+  answerMain.addEventListener("click", function(event) {
+    
+    if(event.target.matches("h3") && event.target.getAttribute("class") === "answer3") {
+      questionFour()
+      result.textContent = "Question Three Correct!"
+      result.style.visibility = "visible";
+      setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+    } else {
+      result.textContent = "Question Three Incorrect"
+      result.style.visibility = "visible";
+      questionFour()
+      setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+    }
+  })
 }
 
 function questionFour() {
@@ -98,7 +124,32 @@ function questionFour() {
   answer2.textContent = questions[3].answers[1].choice
   answer3.textContent = questions[3].answers[2].choice
   answer4.textContent = questions[3].answers[3].choice
+
+  answerMain.addEventListener("click", function(event) {
+  
+      if(event.target.matches("h3") && event.target.getAttribute("class") === "answer4") {
+        scorePage()
+        result.textContent = "Question Four Correct!"
+        result.style.visibility = "visible";
+        setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+      } else {
+        result.textContent = "Question Four Incorrect"
+        result.style.visibility = "visible";
+        setTimeout(function(){ result.style.visibility = "hidden"; }, 800);
+        scorePage()
+      }
+    })
 }
+
+function scorePage() {
+  main.textContent = "Your Score Is: " + secondsLeft
+  timer.style.visibility = "hidden";
+  answer1.style.visibility = "hidden";
+  answer2.style.visibility = "hidden";
+  answer3.style.visibility = "hidden";
+  answer4.style.visibility = "hidden";
+}
+
           
 function startQuiz() {
     //Count Down Timer
@@ -106,11 +157,11 @@ function startQuiz() {
       secondsLeft--;
       timer.textContent = "Time: " + secondsLeft;
   
-      if(secondsLeft === 0) {
+      if(secondsLeft <= 0) {
         clearInterval(timerInterval);
         alert("Game Over")
       }
   
     }, 1000);
   
-  }
+}

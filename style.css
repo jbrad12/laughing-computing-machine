@@ -1,18 +1,47 @@
 .timer {
-    text-align: right;
+    float: right;
+    display: inline;
 }
 
 .startpage {
     text-align: center;
 }
 
-.answers-main {
+#answers {
+    background-color: purple;
+    padding: 10px;
+    font-size: 20px;
+    color: white;
     text-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 25px;
 }
-
-
 .startbutton {
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.start {
+    background-color: purple;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+  }
+
+  .results {
+      text-align: center;
+      border-top: 1px solid black;
+      opacity: 0.3;
+  }
+  
+  .highscores {
+      display: inline-block;
+      float: left;
+      color: rgb(204, 114, 114);
+      text-decoration: underline;
   }
