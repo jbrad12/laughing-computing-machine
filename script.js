@@ -8,6 +8,9 @@ var answer3 = document.querySelector(".answer3")
 var answer4 = document.querySelector(".answer4")
 var answerMain = document.querySelector(".answers-main")
 var result = document.querySelector(".result")
+var inputMain = document.querySelector(".input-main")
+var submitButton = document.querySelector(".submit-button")
+var btn = document.querySelector(".btn")
 
 var questions = [
   { q: "What tag is used to define a list item (in a bulleted list)?", answers: [
@@ -35,7 +38,7 @@ var questions = [
     { choice: "<script>", response: 1},
   ]},
 ]
-
+btn.style.visibility = "hidden"
 answerMain.style.visibility = "hidden"
 start.addEventListener("click", function(){
     startQuiz()
@@ -148,6 +151,19 @@ function scorePage() {
   answer2.style.visibility = "hidden";
   answer3.style.visibility = "hidden";
   answer4.style.visibility = "hidden";
+  btn.style.visibility = "visible"
+  var name = document.createElement("h3");
+  name.textContent = "Enter Your Name"
+  inputMain.append(name)
+  var input = document.createElement("input");
+  input.setAttribute("type", "text");
+  inputMain.append(input)
+  btn.addEventListener("click", function(){
+  var scoreNum = input.value + "  Score: " + secondsLeft
+  localStorage.setItem("score", scoreNum)
+  console.log(input.value)
+  
+  })
 }
 
           
@@ -160,8 +176,10 @@ function startQuiz() {
       if(secondsLeft <= 0) {
         clearInterval(timerInterval);
         alert("Game Over")
+    
       }
   
     }, 1000);
   
 }
+

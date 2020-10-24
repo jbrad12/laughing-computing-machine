@@ -45,3 +45,11 @@
       color: rgb(204, 114, 114);
       text-decoration: underline;
   }
+
+  .input-main {
+      text-align: center;
+  }
+
+  .submit-button {
+      text-align: center;
+  }
