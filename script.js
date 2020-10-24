@@ -11,6 +11,7 @@ var result = document.querySelector(".result")
 var inputMain = document.querySelector(".input-main")
 var submitButton = document.querySelector(".submit-button")
 var btn = document.querySelector(".btn")
+var rules = document.querySelector(".rules")
 
 var questions = [
   { q: "What tag is used to define a list item (in a bulleted list)?", answers: [
@@ -44,6 +45,7 @@ start.addEventListener("click", function(){
     startQuiz()
     questionOne()
     answerMain.style.visibility = "visible"
+    rules.style.visibility = "hidden"
 })
 
 
